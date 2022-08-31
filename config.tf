@@ -14,6 +14,7 @@ provider "aws" {
 resource "aws_instance" "build" {
   ami = "ami-09e67e426f25ce0d7"
   instance_type = "t2.micro"
+  key_name = "AWS_ax"
   vpc_security_group_ids = [aws_security_group.all.id]
   user_data = <<-EOL
   #!/bin/bash
@@ -32,6 +33,7 @@ resource "aws_instance" "build" {
 resource "aws_instance" "web" {
   ami = "ami-09e67e426f25ce0d7"
   instance_type = "t2.micro"
+  key_name = "AWS_ax"
   vpc_security_group_ids = [aws_security_group.all.id]
   user_data = <<-EOL
   #!/bin/bash
@@ -68,11 +70,6 @@ resource "aws_security_group" "all" {
   tags = {
     Name = "all"
   }
-}
-
-output "instance_public_ip" {
-  description = "IP address build"
-  value       = aws_instance.build.public_ip
 }
 
 output "instance_public_ip" {
