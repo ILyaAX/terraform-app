@@ -21,8 +21,8 @@ resource "aws_instance" "build" {
   apt update
   apt install default-jdk -y
   apt install maven -y
-  git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git /home
-  mvn package -f /home/
+  git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git /opt
+  mvn package -f /opt/
   EOL
   
   tags = {
