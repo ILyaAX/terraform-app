@@ -74,7 +74,7 @@ resource "aws_security_group" "all" {
 
 resource "aws_s3_bucket" "app_repository" {
     bucket = "devopschool_webapp_bucket" 
-    acl = "private"
+
 }
 
 output "instance_public_ip" {
