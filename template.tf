@@ -16,6 +16,7 @@ resource "aws_instance" "devops" {
   instance_type = "t2.micro"
   key_name = "AWS_ax"
   vpc_security_group_ids = [aws_security_group.all.id]
+  count = 3
   
   tags = {
     Name = "devops"
