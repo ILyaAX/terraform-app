@@ -26,7 +26,7 @@ resource "aws_instance" "build" {
 resource "aws_s3_object" "app" {
     bucket = "devopschool-webapp-bucket"
     key    = "hello-1.0.war"
-    source = "aws_instance.build:opt/target/hello-1.0.war"
+    source = "aws_instance.build:/opt/target/hello-1.0.war"
 }
 
 resource "aws_instance" "web" {
