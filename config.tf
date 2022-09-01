@@ -16,14 +16,7 @@ resource "aws_instance" "build" {
   instance_type = "t2.micro"
   key_name = "AWS_ax"
   vpc_security_group_ids = [aws_security_group.all.id]
-  user_data = <<-EOL
-  #!/bin/bash
-  apt update
-  apt install default-jdk -y
-  apt install maven -y
-  git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git /opt
-  mvn package -f /opt/
-  EOL
+  user_data = file("build.sh")
   
   tags = {
     Name = "build-server"
@@ -35,13 +28,7 @@ resource "aws_instance" "web" {
   instance_type = "t2.micro"
   key_name = "AWS_ax"
   vpc_security_group_ids = [aws_security_group.all.id]
-  user_data = <<-EOL
-  #!/bin/bash
-  apt update
-  apt install default-jdk -y
-  apt install tomcat9 -y
-  
-  EOL
+  user_data = file("prod.sh")
   
   tags = {
     Name = "app-server"
