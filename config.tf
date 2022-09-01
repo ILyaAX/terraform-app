@@ -21,6 +21,13 @@ resource "aws_instance" "build" {
   tags = {
     Name = "build-server"
   }
+  
+  resource "aws_s3_bucket_object" "app" {
+    bucket = [aws_s3_bucket.app_repository.id]
+    key    = "hello-1.0.war"
+    source = "/opt/target/hello-1.0.war"
+}
+
 }
 
 resource "aws_instance" "web" {
